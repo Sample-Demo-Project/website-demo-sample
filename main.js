@@ -1,6 +1,6 @@
 const container = document.getElementById("sample-list");
 
-for (let i = 216; i <= 223; i++) {
+for (let i = 216; i <= 228; i++) {
     const section = document.createElement("section");
     section.className = "card";
 
