@@ -1,0 +1,26 @@
+/* 改變整體背景顏色 */
+body {
+    background-color: #f6f2e9;   /* 淺咖啡色 */
+    font-family: Arial, sans-serif;
+}
+
+/* 讓主標題變大、置中、變成咖啡色 */
+h1 {
+    color: #8b5e34;
+    text-align: center;
+}
+
+/* 修改段落文字顏色 */
+p {
+    color: #5a4633;
+}
+
+/* 設計一個簡單的盒子 */
+.box {
+    width: 200px;
+    padding: 15px;
+    margin: 20px auto;
+    background-color: #d8c3a5;
+    border-radius: 10px;
+    text-align: center;
+}

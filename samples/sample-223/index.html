@@ -3,30 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sample 223 - RWD Layout</title>
-    <link rel="stylesheet" href="sample223.css">
+    <title>Media Query 響應式範例</title>
+    <style>
+
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        .title {
+            font-size: 36px;
+            text-align: left;
+            color: #6f4e37;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .img {
+            width: 300px;
+            border-radius: 10px;
+        }
+
+        /* ======== 手機版 RWD（寬度 < 600px）======== */
+        @media (max-width: 600px) {
+            .title {
+                font-size: 24px;
+                text-align: center;
+                color: #a47148;  /* 手機版換顏色 */
+            }
+
+            .container {
+                flex-direction: column;  /* 左右排 → 上下排 */
+                text-align: center;
+            }
+
+            .img {
+                width: 100%;  /* 圖片自動滿版 */
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="layout">
-        <aside class="sidebar">
-            <h2>Menu</h2>
-            <ul>
-                <li>Home</li>
-                <li>About</li>
-                <li>Works</li>
-                <li>Contact</li>
-            </ul>
-        </aside>
+    <h1 class="title">Media Query 響應式設計示範</h1>
 
-        <main class="content">
-            <h1>Main Content</h1>
-            <p>
-                This is a completed sample of a responsive two-column layout.
-                The sidebar and content are displayed side by side on desktop,
-                and stacked vertically on mobile devices.
-            </p>
-        </main>
+    <div class="container">
+        <div class="text">
+            <h2>焦糖瑪奇朵</h2>
+            <p>香濃順口的焦糖風味，是本季最受歡迎的新品。</p>
+        </div>
+
+        <!-- 找不到圖片可換網路圖：https://picsum.photos/300 -->
+        <img src="https://picsum.photos/300" class="img">
     </div>
 
 </body>

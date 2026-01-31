@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JS Array + DOM Demo</title>
+  <link rel="stylesheet" href="sample227.css">
+</head>
+<body>
+
+  <div class="card">
+    <h1>Practice List</h1>
+    <p class="hint">
+      This is a JS sample.
+    </p>
+
+    <ul id="practice-list"></ul>
+
+    <label>
+      Create new Practice name: 
+      <input id="practice-input" type="text" placeholder="Ex. Practice 214" />
+    </label>
+    <button id="add-btn">Add</button>
+  </div>
+
+  <script>
+    // 1) Array：資料來源（就像 Python 的 list）
+    const practices = ["Practice 210", "Practice 211", "Practice 212", "Practice 213"];
+
+    // 2) 找到要放內容的地方（DOM 元素）
+    const listEl = document.getElementById("practice-list");
+    const inputEl = document.getElementById("practice-input");
+    const addBtn = document.getElementById("add-btn");
+
+    // 3) 把 Array 渲染到網頁上的 function
+    function renderList() {
+      // 清空舊內容（避免重複）
+      listEl.innerHTML = "";
+
+      // 用回圈把每個項目變成 <li>
+      for (let i = 0; i < practices.length; i++) {
+        const li = document.createElement("li");
+        li.textContent = practices[i];
+        listEl.appendChild(li);
+      }
+    }
+
+    // 4) 初次載入：先把清單畫出來
+    renderList();
+
+    // 5) 按鈕事件：新增項目 → 重新渲染
+    addBtn.addEventListener("click", function () {
+      const text = inputEl.value.trim();
+
+      if (text.length === 0) {
+        alert("請輸入內容");
+        return;
+      }
+
+      practices.push(text);   // 改 Array（新增資料）
+      inputEl.value = "";     // 清空輸入框
+      renderList();           // 重新把畫面畫一次
+    });
+  </script>
+
+</body>
+</html>

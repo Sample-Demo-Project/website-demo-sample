@@ -2,64 +2,38 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media Query 響應式範例</title>
+    <title>Flexbox 彈性排版範例</title>
     <style>
-
-        body {
-            font-family: Arial;
-            padding: 20px;
-        }
-
-        .title {
-            font-size: 36px;
-            text-align: left;
-            color: #6f4e37;
-        }
-
         .container {
             display: flex;
             gap: 20px;
-            align-items: center;
+            flex-wrap: wrap;  /* 螢幕窄時自動換行 */
         }
 
-        .img {
+        .item {
+            background-color: #ffd8a8;
+            padding: 20px;
             width: 300px;
-            border-radius: 10px;
-        }
-
-        /* ======== 手機版 RWD（寬度 < 600px）======== */
-        @media (max-width: 600px) {
-            .title {
-                font-size: 24px;
-                text-align: center;
-                color: #a47148;  /* 手機版換顏色 */
-            }
-
-            .container {
-                flex-direction: column;  /* 左右排 → 上下排 */
-                text-align: center;
-            }
-
-            .img {
-                width: 100%;  /* 圖片自動滿版 */
-            }
+            text-align: center;
+            border-radius: 8px;
+            font-size: 20px;
         }
     </style>
 </head>
 <body>
 
-    <h1 class="title">Media Query 響應式設計示範</h1>
+    <h1>Flexbox 自動換行 RWD 範例</h1>
 
     <div class="container">
-        <div class="text">
-            <h2>焦糖瑪奇朵</h2>
-            <p>香濃順口的焦糖風味，是本季最受歡迎的新品。</p>
-        </div>
-
-        <!-- 找不到圖片可換網路圖：https://picsum.photos/300 -->
-        <img src="https://picsum.photos/300" class="img">
+        <div class="item">區塊 A</div>
+        <div class="item">區塊 B</div>
+        <div class="item">區塊 C</div>
     </div>
+
+    <p>
+        在寬螢幕時，三個區塊會並排。  
+        在手機螢幕時，因為空間不足，會自動變成上下排列，不需要 media query。
+    </p>
 
 </body>
 </html>

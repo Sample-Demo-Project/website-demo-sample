@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Array Display</title>
+</head>
+<body>
+
+<h1>Practice List</h1>
+<ul id="practice-list"></ul>
+
+<script>
+  // Array：資料來源（像 Python list）
+  const practices = ["Practice 210", "Practice 211", "Practice 212", "Practice 213"];
+
+  // 找到要顯示內容的元素
+  const list = document.getElementById("practice-list");
+
+  // 用回圈顯示每一筆資料
+  for (let i = 0; i < practices.length; i++) {
+      const li = document.createElement("li");
+      li.textContent = practices[i];
+      list.appendChild(li);
+      console.log(list);
+  }
+</script>
+
+</body>
+</html>
