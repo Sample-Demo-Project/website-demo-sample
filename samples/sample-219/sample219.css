@@ -1,26 +1,35 @@
-/* 改變整體背景顏色 */
-body {
-    background-color: #f6f2e9;   /* 淺咖啡色 */
-    font-family: Arial, sans-serif;
-}
-
-/* 讓主標題變大、置中、變成咖啡色 */
-h1 {
-    color: #8b5e34;
-    text-align: center;
-}
-
-/* 修改段落文字顏色 */
+/* 1. Element Selector — 選取所有 p */
 p {
-    color: #5a4633;
+    color: darkslateblue;
+    font-size: 18px;
 }
 
-/* 設計一個簡單的盒子 */
-.box {
-    width: 200px;
-    padding: 15px;
-    margin: 20px auto;
-    background-color: #d8c3a5;
-    border-radius: 10px;
+/* 2. ID Selector — 選取 id="main-title" */
+#main-title {
+    color: teal;
     text-align: center;
+    font-size: 32px;
+}
+
+/* 3. Class Selector — 選取 class="intro" */
+.intro {
+    background-color: #f0f8ff;
+    padding: 10px;
+    border-left: 4px solid steelblue;
+}
+
+/* 3-2. 另一個 class 範例：按鈕風格 */
+.btn {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* 4. Attribute Selector — 選取所有有 src 屬性的 img */
+img[src] {
+    border: 3px solid gray;
+    border-radius: 10px;
 }

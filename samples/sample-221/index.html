@@ -2,38 +2,26 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>Flexbox 彈性排版範例</title>
+    <title>流動式寬度範例</title>
     <style>
-        .container {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;  /* 螢幕窄時自動換行 */
-        }
-
-        .item {
-            background-color: #ffd8a8;
+        .box {
+            background-color: #cfe2ff;
             padding: 20px;
-            width: 300px;
-            text-align: center;
-            border-radius: 8px;
+            width: 80%;               /* 用百分比 → 自動縮放 */
+            margin: 20px auto;
             font-size: 20px;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
 
-    <h1>Flexbox 自動換行 RWD 範例</h1>
+    <h1>流動式寬度（Fluid Layout）範例</h1>
 
-    <div class="container">
-        <div class="item">區塊 A</div>
-        <div class="item">區塊 B</div>
-        <div class="item">區塊 C</div>
+    <div class="box">
+        不管螢幕大小如何，這個區塊的寬度永遠是螢幕的 80%。
+        因此在手機上會變窄，在桌機上會變寬。
     </div>
-
-    <p>
-        在寬螢幕時，三個區塊會並排。  
-        在手機螢幕時，因為空間不足，會自動變成上下排列，不需要 media query。
-    </p>
 
 </body>
 </html>
