@@ -30,10 +30,10 @@
   const listEl = document.getElementById("student-list");
 
   for (let i = 0; i < course.students.length; i++) {
-    const student = course.students[i];
+    const student = course.students[i]; // { name: "Tom", score: 90 }
 
     const li = document.createElement("li");
-    li.textContent = student.name + " - " + student.score;
+    li.textContent = student.name + " - " + student.score; // "Tome - 90"
 
     listEl.appendChild(li);
   }

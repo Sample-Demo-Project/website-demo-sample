@@ -28,9 +28,9 @@
     const practices = ["Practice 210", "Practice 211", "Practice 212", "Practice 213"];
 
     // 2) 找到要放內容的地方（DOM 元素）
-    const listEl = document.getElementById("practice-list");
-    const inputEl = document.getElementById("practice-input");
-    const addBtn = document.getElementById("add-btn");
+    const listEl = document.getElementById("practice-list"); // ul 清單
+    const inputEl = document.getElementById("practice-input"); // 文字框
+    const addBtn = document.getElementById("add-btn"); // 按鈕
 
     // 3) 把 Array 渲染到網頁上的 function
     function renderList() {
@@ -50,7 +50,7 @@
 
     // 5) 按鈕事件：新增項目 → 重新渲染
     addBtn.addEventListener("click", function () {
-      const text = inputEl.value.trim();
+      const text = inputEl.value.trim(); // trim = strip
 
       if (text.length === 0) {
         alert("請輸入內容");
