@@ -1,0 +1,93 @@
+/* ===== 基本重置 ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== 全站設定 ===== */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* ===== 版面容器 ===== */
+header,
+main,
+footer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ===== Header ===== */
+header {
+    text-align: center;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+}
+
+header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+header p {
+    color: #666;
+}
+
+/* ===== Main content ===== */
+main {
+    background-color: #ffffff;
+    margin-top: 20px;
+    border-radius: 6px;
+}
+
+section + section {
+    margin-top: 24px;
+}
+
+section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    border-left: 4px solid #4a90e2;
+    padding-left: 8px;
+}
+
+section p {
+    margin-bottom: 10px;
+}
+
+/* ===== List ===== */
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 6px;
+}
+
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+    margin-top: 30px;
+}
+
+/* ===== RWD（手機版） ===== */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 26px;
+    }
+
+    section h2 {
+        font-size: 20px;
+    }
+
+    body {
+        font-size: 15px;
+    }
+}

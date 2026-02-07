@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toggle show/hide</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; }
+    button { padding: 10px 14px; }
+    #box { display: none; margin-top: 14px; padding: 12px; background: #eef6ff; border: 1px solid #cfe5ff; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h1>顯示 / 隱藏</h1>
+  <p>按鈕點一下顯示，再點一下收合。</p>
+
+  <button onclick="toggleBox()">Toggle</button>
+
+  <div id="box">
+    我是被控制顯示的內容（可以放更多資訊、規則、提示等等）。
+  </div>
+
+  <script>
+    function toggleBox() {
+      const box = document.getElementById("box");
+
+      if (box.style.display === "none") {
+        box.style.display = "block";
+      } else {
+        box.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
