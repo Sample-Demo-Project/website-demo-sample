@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inline onclick with parameter</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; }
+    .btns { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+    button { padding: 10px 14px; }
+    #result { padding: 12px; background: #f3f3f3; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h1>onclick 傳參數</h1>
+  <p>不同按鈕傳入不同參數，改同一個顯示區。</p>
+
+  <div class="btns">
+    <button onclick="changeText('HTML')">HTML</button>
+    <button onclick="changeText('CSS')">CSS</button>
+    <button onclick="changeText('JavaScript')">JS</button>
+  </div>
+
+  <p id="result">你點了什麼？</p>
+
+  <script>
+    function changeText(text) {
+      document.getElementById("result").innerText = "你剛剛點了： " + text;
+    }
+  </script>
+</body>
+</html>

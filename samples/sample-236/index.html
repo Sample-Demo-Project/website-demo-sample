@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>addEventListener</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; }
+    button { padding: 10px 14px; }
+    #status { margin-top: 12px; padding: 12px; background: #f3f3f3; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h1>addEventListener</h1>
+  <p>HTML 與 JS 分離，用 JS 綁 click 事件。</p>
+
+  <button id="btn">Click me</button>
+  <div id="status">（尚未點擊）</div>
+
+  <script>
+    const btn = document.getElementById("btn");
+    const status = document.getElementById("status");
+
+    btn.addEventListener("click", function () {
+      status.innerText = "你剛剛點了按鈕！";
+    });
+  </script>
+</body>
+</html>
