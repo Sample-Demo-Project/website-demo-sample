@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fetch Demo (Simple)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 24px;
+    }
+    button {
+      padding: 8px 12px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    #log {
+      margin-top: 12px;
+      background: #fff;
+      border: 1px solid #ccc;
+      min-height: 90px;
+      padding: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h2>Fetch Demo (Simple)</h2>
+  <p>Click the button to fetch a small JSON item and print it.</p>
+
+  <button onclick="runFetch()">Fetch (.then)</button>
+  <button onclick="runFetchAsync()">Fetch (async/await)</button>
+  <button onclick="clearLog()">Clear</button>
+
+  <div id="log"></div>
+
+  <script>
+    const logBox = document.getElementById("log");
+
+    function log(message) {
+      logBox.textContent += message + "\n";
+    }
+
+    function clearLog() {
+      logBox.textContent = "";
+    }
+
+    function runFetch() {
+      clearLog();
+      log("Fetching...");
+
+      fetch("https://jsonplaceholder.typicode.com/todos/1")
+        .then((res) => res.json())
+        .then((data) => {
+          log("Result:");
+          log(JSON.stringify(data, null, 2));
+        })
+        .catch((err) => {
+          log("Error: " + err.message);
+        });
+    }
+
+    async function runFetchAsync() {
+      clearLog();
+      log("Fetching (async/await)...");
+
+      try {
+        const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+        const data = await res.json();
+        log("Result:");
+        log(JSON.stringify(data, null, 2));
+      } catch (err) {
+        log("Error: " + err.message);
+      }
+    }
+  </script>
+</body>
+</html>
