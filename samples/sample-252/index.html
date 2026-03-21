@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Async/Await Demo (Simple)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 24px;
+    }
+    button {
+      padding: 8px 12px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    #log {
+      margin-top: 12px;
+      background: #fff;
+      border: 1px solid #ccc;
+      min-height: 90px;
+      padding: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h2>Async/Await Demo (Simple)</h2>
+  <p>Use <code>await</code> to pause an <code>async</code> function until work is done.</p>
+
+  <button onclick="runAsync()">Run Async/Await</button>
+  <button onclick="clearLog()">Clear</button>
+
+  <div id="log"></div>
+
+  <script>
+    const logBox = document.getElementById("log");
+
+    function log(message) {
+      logBox.textContent += message + "\n";
+    }
+
+    function clearLog() {
+      logBox.textContent = "";
+    }
+
+    function wait(ms) {
+      return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+      });
+    }
+
+    async function runAsync() {
+      clearLog();
+      log("Start");
+
+      await wait(1500);
+      log("After await (1.5s later)");
+
+      log("End");
+    }
+  </script>
+</body>
+</html>

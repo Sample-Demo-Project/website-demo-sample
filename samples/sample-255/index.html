@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flask API GET with Params</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 24px;
+    }
+    .app {
+      max-width: 560px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #e2e2e2;
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .form {
+      display: flex;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    input {
+      flex: 1;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      padding: 8px 12px;
+      border: 1px solid #3b67ff;
+      background: #3b67ff;
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #log {
+      margin-top: 10px;
+      background: #f9fafc;
+      border: 1px solid #e6e9f5;
+      border-radius: 8px;
+      padding: 10px;
+      white-space: pre-wrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    }
+    .hint {
+      color: #666;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h2>Flask API GET with Parameters</h2>
+    <p>Use your local Flask API: <code>http://127.0.0.1:5000/search?q=...</code></p>
+
+    <div class="form">
+      <input id="keyword" type="text" placeholder="keyword (e.g. python)" />
+      <input id="page" type="number" placeholder="page (e.g. 2)" />
+      <button id="fetchBtn">Send</button>
+    </div>
+
+    <div class="hint">Make sure your Flask server is running.</div>
+    <pre id="log">-</pre>
+  </div>
+
+  <script>
+    const keywordEl = document.getElementById("keyword");
+    const pageEl = document.getElementById("page");
+    const fetchBtn = document.getElementById("fetchBtn");
+    const logEl = document.getElementById("log");
+
+    function setLog(text) {
+      logEl.textContent = text;
+    }
+
+    async function fetchSearch() {
+      const keyword = keywordEl.value.trim() || "python";
+      const page = pageEl.value.trim() || "1";
+      const url = `http://127.0.0.1:5000/search?q=${encodeURIComponent(keyword)}&page=${encodeURIComponent(page)}`;
+
+      setLog("Requesting...\n" + url);
+
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        setLog(JSON.stringify(data, null, 2));
+      } catch (err) {
+        setLog("Error: " + err.message);
+      }
+    }
+
+    fetchBtn.addEventListener("click", fetchSearch);
+  </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PUT / PATCH / DELETE Sample</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 24px;
+    }
+    .app {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #e2e2e2;
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .row {
+      display: flex;
+      gap: 10px;
+      margin: 8px 0;
+    }
+    input {
+      flex: 1;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      padding: 8px 12px;
+      border: 1px solid #3b67ff;
+      background: #3b67ff;
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #log {
+      margin-top: 10px;
+      background: #f9fafc;
+      border: 1px solid #e6e9f5;
+      border-radius: 8px;
+      padding: 10px;
+      white-space: pre-wrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h2>PUT / PATCH / DELETE Sample</h2>
+    <p>Use your local Flask API at <code>http://127.0.0.1:5000/items</code></p>
+
+    <div class="row">
+      <input id="idInput" type="number" placeholder="id (e.g. 1)" />
+      <input id="nameInput" type="text" placeholder="name (e.g. Pencil)" />
+    </div>
+
+    <div class="row">
+      <button id="putBtn">PUT (replace)</button>
+      <button id="patchBtn">PATCH (partial)</button>
+      <button id="deleteBtn">DELETE</button>
+    </div>
+
+    <pre id="log">-</pre>
+  </div>
+
+  <script>
+    const idInput = document.getElementById("idInput");
+    const nameInput = document.getElementById("nameInput");
+    const putBtn = document.getElementById("putBtn");
+    const patchBtn = document.getElementById("patchBtn");
+    const deleteBtn = document.getElementById("deleteBtn");
+    const logEl = document.getElementById("log");
+
+    function setLog(text) {
+      logEl.textContent = text;
+    }
+
+    async function putItem() {
+      const id = idInput.value.trim() || "1";
+      const name = nameInput.value.trim() || "Pencil";
+      setLog("PUT...\n");
+
+      try {
+        const res = await fetch(`http://127.0.0.1:5001/items/${id}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name })
+          }
+        );
+        const data = await res.json();
+        setLog(JSON.stringify(data, null, 2));
+      } catch (err) {
+        setLog("Error: " + err.message);
+      }
+    }
+
+    async function patchItem() {
+      const id = idInput.value.trim() || "1";
+      const name = nameInput.value.trim() || "Pencil";
+      setLog("PATCH...\n");
+
+      try {
+        const res = await fetch(`http://127.0.0.1:5001/items/${id}`,
+          {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name })
+          }
+        );
+        const data = await res.json();
+        setLog(JSON.stringify(data, null, 2));
+      } catch (err) {
+        setLog("Error: " + err.message);
+      }
+    }
+
+    async function deleteItem() {
+      const id = idInput.value.trim() || "1";
+      setLog("DELETE...\n");
+
+      try {
+        const res = await fetch(`http://127.0.0.1:5001/items/${id}`, { method: "DELETE" });
+        if (res.status === 204) {
+          setLog("Deleted");
+          return;
+        }
+        const data = await res.json();
+        setLog(JSON.stringify(data, null, 2));
+      } catch (err) {
+        setLog("Error: " + err.message);
+      }
+    }
+
+    putBtn.addEventListener("click", putItem);
+    patchBtn.addEventListener("click", patchItem);
+    deleteBtn.addEventListener("click", deleteItem);
+  </script>
+</body>
+</html>

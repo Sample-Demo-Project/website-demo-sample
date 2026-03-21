@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sync vs Async (Simple)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 24px;
+    }
+    button {
+      padding: 8px 12px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    #log {
+      margin-top: 12px;
+      background: #fff;
+      border: 1px solid #ccc;
+      min-height: 90px;
+      padding: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h2>Sync vs Async (Simple Idea)</h2>
+  <p>Sync waits for the task to finish. Async lets the rest of the code keep going.</p>
+
+  <button onclick="runSync()">Run Sync</button>
+  <button onclick="runAsync()">Run Async</button>
+  <button onclick="clearLog()">Clear</button>
+
+  <div id="log"></div>
+
+  <script>
+    const logBox = document.getElementById("log");
+
+    function log(message) {
+      logBox.textContent += message + "\n";
+    }
+
+    function clearLog() {
+      logBox.textContent = "";
+    }
+
+    // Sync: blocks for 2 seconds
+    function blockingTask() {
+      const start = Date.now();
+      while (Date.now() - start < 2000) {}
+    }
+
+    function runSync() {
+      clearLog();
+      log("Sync: start");
+      blockingTask();
+      log("Sync: finished");
+      log("Sync: rest of code runs after finish");
+    }
+
+    // Async: schedules a task for later
+    function runAsync() {
+      clearLog();
+      log("Async: start");
+
+      setTimeout(function() {
+        log("Async: finished (later)");
+      }, 2000);
+
+      log("Async: rest of code runs immediately");
+    }
+  </script>
+</body>
+</html>

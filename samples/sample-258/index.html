@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form Submit (Flask)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 24px;
+    }
+    .app {
+      max-width: 520px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #e2e2e2;
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .form {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    label {
+      font-size: 14px;
+      color: #555;
+    }
+    input {
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      padding: 8px 12px;
+      border: 1px solid #3b67ff;
+      background: #3b67ff;
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .hint {
+      margin-top: 8px;
+      color: #666;
+      font-size: 13px;
+    }
+    .card {
+      margin-top: 12px;
+      background: #f9fafc;
+      border: 1px solid #e6e9f5;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .label {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 6px;
+    }
+    .value {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h2>Form Submit (Flask)</h2>
+    <p>Submit a form with <code>application/x-www-form-urlencoded</code>.</p>
+
+    <form id="form" class="form">
+      <div>
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" placeholder="e.g. Alice" required />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="e.g. alice@mail.com" required />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="card">
+      <div class="label">Result</div>
+      <div id="result" class="value">-</div>
+    </div>
+    <div class="hint">Make sure your Flask server is running.</div>
+  </div>
+
+  <script>
+    const form = document.getElementById("form");
+    const resultEl = document.getElementById("result");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch("http://127.0.0.1:5001/form-submit", {
+          method: "POST",
+          body: formData
+        });
+        const data = await res.json();
+        resultEl.textContent = JSON.stringify(data, null, 2);
+      } catch (err) {
+        resultEl.textContent = "Error: " + err.message;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Callback Demo</title>
+  <style>
+    body { font-family: Arial; padding: 30px; }
+    button { padding: 10px 15px; margin-right: 10px; }
+    #status { margin-top: 20px; font-size: 18px; }
+  </style>
+</head>
+<body>
+
+  <h2>Callback Demo</h2>
+
+  <button onclick="startTask()">Start Task (with callback)</button>
+  <button onclick="clearLog()">Clear</button>
+
+  <div id="status">Not started</div>
+  <pre id="log"></pre>
+
+  <script>
+    const logBox = document.getElementById("log");
+
+    function log(message) {
+      logBox.textContent += message + "\n";
+    }
+
+    function clearLog() {
+      logBox.textContent = "";
+      document.getElementById("status").innerText = "Not started";
+    }
+
+    function doTask(callback) {
+      document.getElementById("status").innerText = "Working...";
+
+      setTimeout(() => {
+        callback("Done!");
+      }, 2000);
+    }
+
+    function startTask() {
+      log("Start: before doTask");
+
+      doTask(function(result) {
+        log("Callback: task finished");
+        document.getElementById("status").innerText = result;
+      });
+
+      log("After: doTask returned (callback not yet)");
+    }
+
+  </script>
+
+</body>
+</html>
